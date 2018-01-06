@@ -15,12 +15,18 @@ const Cell = styled.div`
 
 class GridCell extends Component {
     state = {
-        color: 'white'
+        color: 'white',
+        cellTaken: false
     }
 
+
+    
     handleClick = () => {
         console.log(`This is coordinates ${this.props.x},${this.props.y}`)
-        this.props.player1 ? this.setState({color: 'red'}) : this.setState({color: 'blue'})
+        if(this.state.cellTaken === false) {
+            this.props.player1 ? this.setState({color: 'red', cellTaken: true}) : this.setState({color: 'blue', cellTaken: true
+        })}
+        
     }
 
     render() {
