@@ -9,29 +9,32 @@ const Container = styled.div`
 
 class ReactRedux extends Component {
     state = {
-        grid: [0, 0, 0, 0, 0, 0, 0,
-               0, 0, 0, 0, 0, 0, 0,
-               0, 0, 0, 0, 0, 0, 0,
-               0, 0, 0, 0, 0, 0, 0,
-               0, 0, 0, 0, 0, 0, 0,
-               0, 0, 0, 0, 0, 0, 0]
+        color: 'white',
+        player1: true,
+        player2: false,
+    }
+
+    handleClick = () => {
+        this.state.player1 ? this.setState({player1: false, player2: true}) 
+        :
+        this.setState({player1: !this.state.player1, player2: !this.state.player2})
     }
 
     render() {
         const cells = [];
 
-        for(let x = 0; x < 6; x++){
+        for(let x = 5; x >= 0; x--){
             const row = [];
 
-            for(let y = 0; y < 7; y++){
-                cells.push(<GridCell x={x} y={y} />)
+            for(let y = 0; y <= 6; y++){
+                cells.push(<GridCell key={y} x={x} y={y} />)
             }
             
-            cells.push(<div> {row} </div>)
+            cells.push(<div key={x}> {row} </div>)
         }
 
         return (
-            <Container>
+            <Container onClick={this.handleClick}>
                 {/* {
                     this.state.grid.map((cell) => {
                         return (
