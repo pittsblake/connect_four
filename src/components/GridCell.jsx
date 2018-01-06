@@ -14,22 +14,19 @@ const Cell = styled.div`
 
 
 class GridCell extends Component {
-    // state = {
-    //     player1: true,
-    //     player2: false,
-    //     color: 'white'
-    // }
+    state = {
+        color: 'white'
+    }
 
     handleClick = () => {
         console.log(`This is coordinates ${this.props.x},${this.props.y}`)
-
+        this.props.player1 ? this.setState({color: 'red'}) : this.setState({color: 'blue'})
     }
 
     render() {
         return (
            
-                <Cell onClick={this.handleClick} >
-
+                <Cell onClick={this.handleClick} style={{backgroundColor: this.state.color}} >
                     <p>{this.props.x}, {this.props.y}</p>
                 </Cell>
            

@@ -27,7 +27,7 @@ class ReactRedux extends Component {
             const row = [];
 
             for(let y = 0; y <= 6; y++){
-                cells.push(<GridCell key={y} x={x} y={y} />)
+                cells.push(<GridCell key={y} x={x} y={y} player1={this.state.player1} player2={this.state.player2}/>)
             }
             
             cells.push(<div key={x}> {row} </div>)
