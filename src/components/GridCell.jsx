@@ -19,15 +19,22 @@ class GridCell extends Component {
         cellTaken: false
     }
 
-    componentWillReceiveProps = async () => {
-        await this.props.remainCurrentPlayer
-    }
+    // componentWillReceiveProps = async () => {
+    //     await this.props.remainCurrentPlayer
+    // }
     
+
+    verticalWinLogic = () => {
+        for(let i = 0; i <= this.props.y; i++){
+            if(this.props.x === 3 ){
+                alert('you win!')
+            }
+    }}
 
 
     handleClick = () => {
         console.log(`This is coordinates ${this.props.x},${this.props.y}`)
-        
+        this.verticalWinLogic()
         if(this.state.cellTaken === true){
             this.props.remainCurrentPlayer()
         } else if(this.state.cellTaken === false) {

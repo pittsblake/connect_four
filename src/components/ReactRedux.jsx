@@ -15,9 +15,9 @@ class ReactRedux extends Component {
         player2: false,
     }
 
-    componentWillMount = async () => {
-        await this.remainCurrentPlayer
-    }
+    // componentWillMount = async () => {
+    //     await this.remainCurrentPlayer
+    // }
 
     changePlayer = () => {
         this.state.player1 ? this.setState({player1: false, player2: true}) 
