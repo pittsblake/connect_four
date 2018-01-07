@@ -19,14 +19,26 @@ class GridCell extends Component {
         cellTaken: false
     }
 
-
+    componentWillReceiveProps = async () => {
+        await this.props.remainCurrentPlayer
+    }
     
+
+
     handleClick = () => {
         console.log(`This is coordinates ${this.props.x},${this.props.y}`)
-        if(this.state.cellTaken === false) {
-            this.props.player1 ? this.setState({color: 'red', cellTaken: true}) : this.setState({color: 'blue', cellTaken: true
-        })}
         
+        if(this.state.cellTaken === true){
+            this.props.remainCurrentPlayer()
+        } else if(this.state.cellTaken === false) {
+            if(this.props.player1){
+                this.setState({color: 'red', cellTaken: true})
+                this.props.changePlayer()
+            } else if(this.props.player2) {
+                this.setState({color: 'blue', cellTaken: true})
+                this.props.changePlayer()
+            }
+        }
     }
 
     render() {
