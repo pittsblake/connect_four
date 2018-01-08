@@ -2,13 +2,13 @@ import React, { Component } from 'react';
 import styled from 'styled-components'
 
 const Cell = styled.div`
-    height: 40px;
+    /* height: 40px;
     width: 40px;
     border: solid thin;
     display: inline-block;
     margin: 0px;
     padding: 20px;
-    cursor: pointer;
+    cursor: pointer; */
 `
 
 
@@ -18,15 +18,12 @@ class GridCell extends Component {
         color: 'white',
         cellTaken: false
     }
-
-    // componentWillReceiveProps = async () => {
-    //     await this.props.remainCurrentPlayer
-    // }
     
 
     verticalWinLogic = () => {
+       
         for(let i = 0; i <= this.props.y; i++){
-            if(this.props.x === 3 ){
+            if(this.props.x === 3 && this.props.x === this.props.player1){
                 alert('you win!')
             }
     }}
@@ -34,7 +31,9 @@ class GridCell extends Component {
 
     handleClick = () => {
         console.log(`This is coordinates ${this.props.x},${this.props.y}`)
-        this.verticalWinLogic()
+        
+        // this.verticalWinLogic()
+
         if(this.state.cellTaken === true){
             this.props.remainCurrentPlayer()
         } else if(this.state.cellTaken === false) {
@@ -44,17 +43,18 @@ class GridCell extends Component {
             } else if(this.props.player2) {
                 this.setState({color: 'blue', cellTaken: true})
                 this.props.changePlayer()
-            }
+            } 
         }
     }
 
     render() {
         return (
-           
-                <Cell onClick={this.handleClick} style={{backgroundColor: this.state.color}} >
-                    <p>{this.props.x}, {this.props.y}</p>
+           <div>
+                <Cell 
+                onClick={this.handleClick} style={{backgroundColor: this.state.color}} >
+                {this.props.setUpBoard}    
                 </Cell>
-           
+           </div>
         );
     }
 }

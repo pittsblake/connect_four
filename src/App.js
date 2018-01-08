@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { BrowserRouter as Router, Switch, Route } from 'react-router-dom';
 import HomePage from './components/HomePage'
 import Testing from './components/Testing'
-import ReactRedux from './components/ReactRedux'
+import Main from './components/Main'
 
 class App extends Component {
   render() {
@@ -19,7 +19,7 @@ class App extends Component {
             /> */}
             <Route
               exact path = "/"
-              component = {ReactRedux}
+              component = {Main}
             />
         </Switch>
       </Router>
