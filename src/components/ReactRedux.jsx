@@ -13,6 +13,8 @@ class ReactRedux extends Component {
     state = {
         player1: true,
         player2: false,
+        current: 'red',
+        // Virtual Board
         board: [
             [], //Column 0
             [], //Column 1
@@ -23,21 +25,37 @@ class ReactRedux extends Component {
         ]
     }
 
-    componentWillMount = async () => {
-        await this.remainCurrentPlayer
+    pushingTile = (state, action) => {
+        if(action.type==='Drop_Tile'){
+            console.log('dropping onto col' + action.payload);
+            const tile = state.current;
+            const col = state.board[action.payload].concat(tile)
+
+            const board = state.board.slice();
+            board[action, payload] = col;
+        }
+        return {
+            current: state.current === 'red' ? 'black' : 'red',
+        }
     }
 
+    // Keeps Track of Turns
     changePlayer = () => {
         this.state.player1 ? this.setState({player1: false, player2: true}) 
         :
         this.setState({player1: !this.state.player1, player2: !this.state.player2})
     }
 
+    // Keeps the player's turn if a taken cell is clicked again
     remainCurrentPlayer = () => {
         alert('already taken')
     }
 
+
     render() {
+
+        // Builds Board
+
         const cells = [];
 
         for(let x = 5; x >= 0; x--){
@@ -50,6 +68,8 @@ class ReactRedux extends Component {
                         player1={this.state.player1}
                         player2={this.state.player2}
                         remainCurrentPlayer={this.remainCurrentPlayer}
+                        board={this.state.board}
+                        dropTile={this.dropTile}
                         />)
             }
             
@@ -57,15 +77,7 @@ class ReactRedux extends Component {
         }
 
         return (
-            <Container >
-                {/* {
-                    this.state.grid.map((cell) => {
-                        return (
-                            <Cell>{cell}</Cell>
-                        )
-                    })
-                } */}
-
+            <Container className="App">
                 {cells}
             </Container>
         );

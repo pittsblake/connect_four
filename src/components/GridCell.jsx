@@ -11,18 +11,18 @@ const Cell = styled.div`
     cursor: pointer;
 `
 
-
-
 class GridCell extends Component {
     state = {
         color: 'white',
         cellTaken: false
     }
 
-    componentWillReceiveProps = async () => {
-        await this.props.remainCurrentPlayer
+
+    cellTaken = (col) => {
+        this.props.x
     }
-    
+
+    // Checks for vertical Win
 
     verticalWin = () => {
         if(this.props.x === 3){
@@ -31,14 +31,19 @@ class GridCell extends Component {
     }
 
     handleClick = () => {
-        console.log(`This is coordinates ${this.props.x},${this.props.y}`)
+        console.log(`This is Column is ${this.props.y}`)
         
+        // Check for Win
         this.verticalWin()
 
+        // If no win, allow players to take cells
         if(this.state.cellTaken === true){
             this.props.remainCurrentPlayer()
         } else if(this.state.cellTaken === false) {
             if(this.props.player1){
+
+                //push x,y coordinates to Virtual Board state
+
                 this.setState({color: 'red', cellTaken: true})
                 this.props.changePlayer()
             } else if(this.props.player2) {
