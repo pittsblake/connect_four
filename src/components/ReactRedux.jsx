@@ -13,6 +13,14 @@ class ReactRedux extends Component {
     state = {
         player1: true,
         player2: false,
+        board: [
+            [], //Column 0
+            [], //Column 1
+            [], //Column 2
+            [], //Column 3
+            [], //Column 4
+            [], //Column 5
+        ]
     }
 
     componentWillMount = async () => {

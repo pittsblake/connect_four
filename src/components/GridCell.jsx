@@ -24,10 +24,17 @@ class GridCell extends Component {
     }
     
 
+    verticalWin = () => {
+        if(this.props.x === 3){
+            alert("win!")
+        }
+    }
 
     handleClick = () => {
         console.log(`This is coordinates ${this.props.x},${this.props.y}`)
         
+        this.verticalWin()
+
         if(this.state.cellTaken === true){
             this.props.remainCurrentPlayer()
         } else if(this.state.cellTaken === false) {
