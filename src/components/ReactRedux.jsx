@@ -11,18 +11,16 @@ const Container = styled.div`
 
 class ReactRedux extends Component {
     state = {
-        player1: true,
-        player2: false,
+        player: 'red'
+        // player1: true,
+        // player2: false,
     }
 
-    componentWillMount = async () => {
-        await this.remainCurrentPlayer
-    }
 
     changePlayer = () => {
-        this.state.player1 ? this.setState({player1: false, player2: true}) 
+        this.state.player === 'red' ? this.setState({player: 'blue'}) 
         :
-        this.setState({player1: !this.state.player1, player2: !this.state.player2})
+        this.setState({player: 'red'})
     }
 
     remainCurrentPlayer = () => {
@@ -36,16 +34,17 @@ class ReactRedux extends Component {
             const row = [];
 
             for(let y = 0; y <= 6; y++){
-                cells.push(<GridCell key={y}
+                cells.push(<GridCell className='cols'key={y}
                         x={x} y={y}
                         changePlayer={this.changePlayer} 
                         player1={this.state.player1}
                         player2={this.state.player2}
+                        player={this.state.player}
                         remainCurrentPlayer={this.remainCurrentPlayer}
                         />)
             }
             
-            cells.push(<div key={x}> {row} </div>)
+            cells.push(<div className='rows' key={x}> {row} </div>)
         }
 
         return (

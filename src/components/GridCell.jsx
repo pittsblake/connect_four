@@ -19,26 +19,52 @@ class GridCell extends Component {
         cellTaken: false
     }
 
-    componentWillReceiveProps = async () => {
-        await this.props.remainCurrentPlayer
-    }
     
+    // checkForWinner = (x, y) => {
 
+    //     checkWin = (directionA, directionB) => {
+    //         const total = 1 + 
+    //             checkDirection(a)+
+    //             checkDirection(b);
+    //             if(total >= 4) {
+    //                 return
+    //             }
+    //     }
+    //     checkVerticals = () =>{
+
+    //         return checkWin({i: -1, j: 0}, {i:1, j:0});
+    //     }
+    //     return checkVerticals();
+    // }
+
+
+    eventListeners = () => {
+        
+    }
 
     handleClick = () => {
+        this.state.color = this.props.player
+
         console.log(`This is coordinates ${this.props.x},${this.props.y}`)
         
-        if(this.state.cellTaken === true){
-            this.props.remainCurrentPlayer()
-        } else if(this.state.cellTaken === false) {
-            if(this.props.player1){
-                this.setState({color: 'red', cellTaken: true})
-                this.props.changePlayer()
-            } else if(this.props.player2) {
-                this.setState({color: 'blue', cellTaken: true})
-                this.props.changePlayer()
-            }
+        
+        if(this.props.player === 'red'){
+            this.props.changePlayer()   
+        } else if (this.props.player === 'blue'){
+            this.props.changePlayer()
         }
+
+        // if(this.state.cellTaken === true){
+        //     this.props.remainCurrentPlayer()
+        // } else if(this.state.cellTaken === false) {
+        //     if(this.props.player1){
+        //         this.setState({color: 'red', cellTaken: true})
+        //         this.props.changePlayer()
+        //     } else if(this.props.player2) {
+        //         this.setState({color: 'blue', cellTaken: true})
+        //         this.props.changePlayer()
+        //     }
+        // }
     }
 
     render() {
