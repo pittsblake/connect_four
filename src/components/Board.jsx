@@ -15,10 +15,6 @@ class ReactRedux extends Component {
         player2: false,
     }
 
-    componentWillMount = async () => {
-        await this.remainCurrentPlayer
-    }
-
     changePlayer = () => {
         this.state.player1 ? this.setState({player1: false, player2: true}) 
         :
@@ -42,6 +38,7 @@ class ReactRedux extends Component {
                         player1={this.state.player1}
                         player2={this.state.player2}
                         remainCurrentPlayer={this.remainCurrentPlayer}
+                        cells={this.cells}
                         />)
             }
             

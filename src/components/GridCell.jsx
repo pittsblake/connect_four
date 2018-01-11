@@ -19,10 +19,6 @@ class GridCell extends Component {
         cellTaken: false
     }
 
-    componentWillReceiveProps = async () => {
-        await this.props.remainCurrentPlayer
-    }
-    
 
 
     handleClick = () => {
